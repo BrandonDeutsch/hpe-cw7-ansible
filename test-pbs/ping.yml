@@ -1,14 +1,14 @@
 ---
 
   - name: HP Comware facts
-    hosts: hp1
+    hosts: H639
     gather_facts: no
     connection: local
 
     tasks:
 
-      - name: test reachability to 8.8.8.8
-        comware_ping: host=8.8.8.8 username={{ username }} password={{ password }} hostname={{ inventory_hostname }}
+      - name: test reachability to H639
+        comware_ping: host={{ ip }} username={{ username }} password={{ password }} hostname={{ inventory_hostname }}
         register: results
 
       - name: dump all of results
@@ -22,7 +22,7 @@
 
       # FAIL TEST
       - name: test reachability t
-        comware_ping: host=300.8.8.8 username={{ username }} password={{ password }} hostname={{ inventory_hostname }}
+        comware_ping: host={{ ip }} username={{ username }} password={{ password }} hostname={{ inventory_hostname }}
         ignore_errors: true
         register: data
         tags: f1
